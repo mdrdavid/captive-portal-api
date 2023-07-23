@@ -4,6 +4,6 @@ import { registerUserController } from '../controllers/registerUser';
 const router = express.Router();
 
 // User registration with voucher
-router.post('/register', registerUserController);
+router.post('/', registerUserController);
 
 export default router;

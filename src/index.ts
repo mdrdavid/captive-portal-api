@@ -1,11 +1,15 @@
 const express = require('express');
 import mongoose from 'mongoose';
 const reservationRouter = require('./routes/reservationRouter');
+const voucherValidationRouter = require('./routes/voucherValidationRouter');
+const registerUserRouter = require('./routes/registerUserRouter');
 const app = express();
 app.use(express.json());
 const port = 5000;
 
 app.use('/reservations', reservationRouter);
+app.use('/register', registerUserRouter);
+app.use('/validate', voucherValidationRouter);
 
 // Connect to the MongoDB database
 mongoose
