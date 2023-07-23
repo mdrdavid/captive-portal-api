@@ -1,6 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 const bcrypt = require('bcrypt');
 import User, { IUser } from '../models/user';
+import { generateVoucher } from '../utils/generateVoucher';
 
 export async function registerUser(
     email: string,
@@ -18,7 +19,7 @@ export async function registerUser(
         throw new Error('Password is required');
     }
     // Generate a unique voucher using UUID
-    const voucher = uuidv4();
+    const voucher = generateVoucher(8);
 
     // Hash the password before saving it
     const hashedPassword = await bcrypt.hash(password, 10);
