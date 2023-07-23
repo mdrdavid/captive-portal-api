@@ -1,6 +1,4 @@
-// src/services/user.service.ts
 import { v4 as uuidv4 } from 'uuid';
-// import bcrypt from "bcrypt";
 const bcrypt = require('bcrypt');
 import User, { IUser } from '../models/user';
 
@@ -15,11 +13,16 @@ export async function registerUser(
         throw new Error('User already exists');
     }
 
+    // Check if the password is not empty or undefined
+    if (!password) {
+        throw new Error('Password is required');
+    }
     // Generate a unique voucher using UUID
     const voucher = uuidv4();
 
     // Hash the password before saving it
     const hashedPassword = await bcrypt.hash(password, 10);
+    console.log(hashedPassword)
 
     // Create a new user with the generated voucher
     const user: IUser = await User.create({

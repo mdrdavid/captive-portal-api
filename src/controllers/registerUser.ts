@@ -1,4 +1,3 @@
-// src/controllers/user.controller.ts
 import { Request, Response } from 'express';
 import { registerUser } from '../services/registerUser';
 

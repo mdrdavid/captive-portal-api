@@ -12,8 +12,8 @@ const userSchema = new Schema<IUser>({
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     macAddress: { type: String, required: true, unique: true },
-    accessToken: { type: String, required: true },
-    voucher: { type: String, required: true, unique: true },
+    accessToken: { type: String, required: false },
+    voucher: { type: String, required: false, unique: true },
 });
 
 export default mongoose.model<IUser>('User', userSchema);

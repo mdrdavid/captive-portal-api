@@ -6,4 +6,7 @@ const router = express.Router();
 // Validate a voucher
 router.post('/', validateVoucherController);
 
-export default router;
+module.exports = function voucherValidationRouter(req, res, next) {
+    // Use the router as middleware
+    router(req, res, next);
+};

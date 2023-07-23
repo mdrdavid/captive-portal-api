@@ -6,4 +6,7 @@ const router = express.Router();
 // User registration with voucher
 router.post('/', registerUserController);
 
-export default router;
+module.exports = function registerUserRouter(req, res, next) {
+    // Use the router as middleware
+    router(req, res, next);
+};
