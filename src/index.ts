@@ -4,6 +4,7 @@ const reservationRouter = require('./routes/reservationRouter');
 const voucherValidationRouter = require('./routes/voucherValidationRouter');
 const registerUserRouter = require('./routes/registerUserRouter');
 const app = express();
+require('dotenv').config();
 app.use(express.json());
 const port = 5000;
 
@@ -13,9 +14,7 @@ app.use('/validate', voucherValidationRouter);
 
 // Connect to the MongoDB database
 mongoose
-    .connect(
-        'mongodb+srv://david:david@cluster0.bkgfjsx.mongodb.net/reservation-portal'
-    )
+    .connect(process.env.MONGOOSE_URL)
     .then(() => {
         console.log('Connected to database');
     })
