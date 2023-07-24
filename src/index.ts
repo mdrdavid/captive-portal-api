@@ -8,6 +8,20 @@ require('dotenv').config();
 app.use(express.json());
 const port = 5000;
 
+// Middleware to handle redirects
+app.use((req, res, next) => {
+    // Modify this condition to check if the user is authenticated based on your implementation
+    // For example, you might use req.isAuthenticated() or check if there's a valid access token in the request headers.
+    const isAuthenticated = true; // Replace this with your actual authentication check
+
+    if (!isAuthenticated) {
+        // If user is not authenticated (not logged in), redirect to the captive portal URL
+        return res.redirect(302, 'https://example.com/captive-portal');
+    }
+    // If user is authenticated, proceed to the requested destination
+    next();
+});
+
 app.use('/reservations', reservationRouter);
 app.use('/register', registerUserRouter);
 app.use('/validate', voucherValidationRouter);
