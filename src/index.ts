@@ -6,8 +6,12 @@ const voucherValidationRouter = require('./routes/voucherValidationRouter');
 const registerUserRouter = require('./routes/registerUserRouter');
 const bookingsRouter = require('./routes/testRouter');
 const app = express();
+const cors = require('cors');
 require('dotenv').config();
+
 app.use(express.json());
+// app.use(cors({ origin: true, credentials: true }));
+app.use(cors()); // Use the cors middleware
 const port = 5000;
 
 // Middleware to handle redirects

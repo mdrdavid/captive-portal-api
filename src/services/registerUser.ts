@@ -1,8 +1,9 @@
 import { v4 as uuidv4 } from 'uuid';
+var jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 import User, { IUser } from '../models/user';
 import { generateVoucher } from '../utils/generateVoucher';
-
+const secretKey = 'davidmatovu';
 export async function registerUser(
     email: string,
     password: string,
@@ -23,7 +24,7 @@ export async function registerUser(
 
     // Hash the password before saving it
     const hashedPassword = await bcrypt.hash(password, 10);
-    console.log(hashedPassword)
+    console.log(hashedPassword);
 
     // Create a new user with the generated voucher
     const user: IUser = await User.create({
@@ -34,5 +35,11 @@ export async function registerUser(
         voucher,
     });
 
+    // Generate an access token
+    const accessToken = jwt.sign({ userId: user._id }, secretKey);
+    console.log(accessToken)
+    // Update the user with the new access token
+    user.accessToken = accessToken;
+    await user.save(); // Save the updated user to the database
     return user;
 }
