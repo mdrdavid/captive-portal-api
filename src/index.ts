@@ -30,7 +30,7 @@ app.use('/bookings', bookingsRouter); // Use the reservationRouter with the base
 
 // Connect to the MongoDB database
 mongoose
-    .connect(process.env.MONGOOSE_URL)
+    .connect('mongodb+srv://david:david@cluster0.bkgfjsx.mongodb.net/captive-portal')
     .then(() => {
         console.log('Connected to database');
     })
