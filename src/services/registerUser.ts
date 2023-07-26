@@ -7,7 +7,8 @@ const secretKey = 'davidmatovu';
 export async function registerUser(
     email: string,
     password: string,
-    macAddress: string
+    macAddress: string,
+    ipAddress: string 
 ): Promise<IUser> {
     // Check if the user with the provided MAC address already exists
     const existingUser: IUser | null = await User.findOne({ macAddress });
@@ -33,6 +34,7 @@ export async function registerUser(
         macAddress,
         accessToken: '',
         voucher,
+        ipAddress: ''
     });
 
     // Generate an access token

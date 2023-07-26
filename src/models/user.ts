@@ -5,6 +5,7 @@ export interface IUser extends Document {
     password: string;
     macAddress: string;
     accessToken: string;
+    ipAddress: string;
     voucher: string;
 }
 
@@ -13,8 +14,8 @@ const userSchema = new Schema<IUser>({
     password: { type: String, required: true },
     macAddress: { type: String, required: true, unique: true },
     accessToken: { type: String, required: false },
+    ipAddress: { type: String, required: false },
     voucher: { type: String, required: false, unique: true },
 });
 
 export default mongoose.model<IUser>('User', userSchema);
-
